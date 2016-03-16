@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+    <text>com.mind.weixin.message.TextMessage</text>
+    <image>com.mind.weixin.message.ImageMessage</image>
+    <link>com.mind.weixin.message.LinkMessage</link>
+    <location>com.mind.weixin.message.LocationMessage</location>
+    <video>com.mind.weixin.message.VideoMessage</video>
+    <voice>com.mind.weixin.message.VoiceMessage</voice>
+    <event.subscribe>com.mind.weixin.message.TicketEvent</event.subscribe>
+    <event.unsubscribe>com.mind.weixin.message.TicketEvent</event.unsubscribe>
+    <event.SCAN>com.mind.weixin.message.TicketEvent</event.SCAN>
+    <event.LOCATION>com.mind.weixin.message.LocationEvent</event.LOCATION>
+    <event.CLICK>com.mind.weixin.message.MenuEvent</event.CLICK>
+    <event.VIEW>com.mind.weixin.message.MenuEvent</event.VIEW>
+    <event.MASSSENDJOBFINISH>com.mind.weixin.message.MasssendJobFinishEvent</event.MASSSENDJOBFINISH>
+    <event.pic_sysphoto>com.mind.weixin.message.PhotoEvent</event.pic_sysphoto>
+    <event.pic_photo_or_album>com.mind.weixin.message.PhotoEvent</event.pic_photo_or_album>
+    <event.pic_weixin>com.mind.weixin.message.PhotoEvent</event.pic_weixin>
+    <event.location_select>com.mind.weixin.message.LocationSelectEvent</event.location_select>
+    <event.scancode_push>com.mind.weixin.message.ScancodePushOrWaitEvent</event.scancode_push>
+    <event.scancode_waitmsg>com.mind.weixin.message.ScancodePushOrWaitEvent</event.scancode_waitmsg>
+    <event.TEMPLATESENDJOBFINISH>com.mind.weixin.message.StatusEvent</event.TEMPLATESENDJOBFINISH>
+    <event.card_pass_check>com.mind.weixin.message.CardPassCheckEvent</event.card_pass_check>
+    <event.card_not_pass_check>com.mind.weixin.message.CardPassCheckEvent</event.card_not_pass_check>
+    <event.user_get_card>com.mind.weixin.message.UserGetCardEvent</event.user_get_card>
+    <event.user_del_card>com.mind.weixin.message.UserDelCardEvent</event.user_del_card>
+    <event.user_consume_card>com.mind.weixin.message.UserConsumeCardEvent</event.user_consume_card>
+    <event.user_view_card>com.mind.weixin.message.UserViewCardEvent</event.user_view_card>
+    <event.poi_check_notify>com.mind.weixin.message.PoiCheckNotify</event.poi_check_notify>
+</mappings>
+

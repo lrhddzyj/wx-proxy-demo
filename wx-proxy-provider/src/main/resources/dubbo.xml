@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application  name="wx-proxy-provider" owner="serv"/>
+
+    <dubbo:registry protocol="zookeeper" address="10.170.24.118:2181" file="~/.dubbo/wx-proxy-provider.cache"/>
+
+    <dubbo:protocol name="dubbo" port="-1"/>
+
+    <!--微信配置接口-->
+    <dubbo:reference id="wxConfigService" interface="com.mind.config.service.WxConfigService" check="false" version="1.0"/>
+
+    <dubbo:reference id="wxReplyMessageService" interface="com.mind.weixin.service.WxReplyMessageService" check="false" timeout="4000" retries="0" version="1.0"/>
+
+    <!--第三方开放平台-->
+    <!--<dubbo:reference id="thApiService" interface="com.mind.data.th.service.ThApiService" check="false" timeout="10000"/>-->
+
+    <dubbo:service interface="com.mind.weixin.service.WxGroupService" ref="wxGroupServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxUserService" ref="wxUserServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxMenuService" ref="wxMenuServiceImpl"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxRedEnvelopeService" ref="wxRedEnvelopeServiceImpl"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxQrcodeService" ref="wxQrcodeServiceImpl"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxBatchPushService" ref="wxBatchPushServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxMediaUploadService" ref="wxMediaUploadServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxPushService" ref="wxPushServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxShortUrlService" ref="wxShortUrlServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxKfService" ref="wxKfServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxOauth2Service" ref="wxOauth2ServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxTokenService" ref="wxTokenServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxUserInfoRecordService" ref="wxUserInfoRecordServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxTemplateService" ref="wxTemplateServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxCardService" ref="wxCardServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxJsapiService" ref="wxJsapiServiceImpl" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.service.WxPoiService" ref="wxPoiServiceImpl" version="1.0"/>
+
+
+</beans>

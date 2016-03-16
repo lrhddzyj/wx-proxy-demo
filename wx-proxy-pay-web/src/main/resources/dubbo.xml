@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application  name="wx-proxy-pay-web" owner="serv"/>
+
+    <dubbo:registry protocol="zookeeper" address="10.170.24.118:2181" file="~/.dubbo/wx-proxy-pay-web.cache"/>
+
+    <dubbo:protocol name="dubbo" port="-1"/>
+
+
+    <dubbo:reference id="wxPayConfigService" interface="com.mind.config.service.WxPayConfigService" check="false"  timeout="2000" retries="1" version="1.0"/>
+    <!--微信配置接口-->
+    <dubbo:reference id="wxConfigService" interface="com.mind.config.service.WxConfigService" check="false" timeout="2000" retries="1" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.pay.service.WxOnlinePaymentService" ref="wxPaymentServiceImpl" timeout="10000" version="1.0"/>
+
+    <dubbo:service interface="com.mind.weixin.pay.service.WxOfflinePaymentService" ref="wxPaymentServiceImpl" timeout="10000" version="1.0">
+        <dubbo:method name="micropay" retries="0" loadbalance="leastactive" actives="5"/>
+    </dubbo:service>
+
+    <dubbo:service interface="com.mind.weixin.pay.service.QiyeTransfersService" ref="qiyeTransfersServiceImpl" timeout="10000" version="1.0"/>
+
+</beans>

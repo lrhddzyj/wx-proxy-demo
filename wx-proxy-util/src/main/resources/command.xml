@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+    <!-- //////////////////////////////////////用户操作////////////////////////////////////// -->
+    <!-- 获取用户token -->
+    <location id="accessTokenUrl">
+        <url>https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid={appId}&amp;secret={secret}</url>
+    </location>
+    <!-- 获取用户基本信息 -->
+    <location id="getUserBaseInfo">
+        <url>https://api.weixin.qq.com/cgi-bin/user/info?access_token={accessToken}&amp;openid={openId}&amp;lang=zh_CN</url>
+    </location>
+    <!-- 获取关注者列表 -->
+    <location id="getAttentionList">
+        <url>https://api.weixin.qq.com/cgi-bin/user/get?access_token={accessToken}&amp;next_openid={nextOpenId}</url>
+    </location>
+    <!--设置用户的备注名 -->
+    <location id="updateRemark">
+        <url>https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token={accessToken}</url>
+        <postdata>
+            {
+            "openid":"{openId}",
+            "remark":"{remark}"
+            }
+        </postdata>
+    </location>
+
+    <!-- ////////////////////////////////////url长短链接////////////////////////////////////// -->
+    <!--长连接转短链接接口 -->
+    <location id="long2Short">
+        <url>https://api.weixin.qq.com/cgi-bin/shorturl?access_token={accessToken}</url>
+        <postdata>
+            {
+            "action": "long2short",
+            "long_url": "{longUrl}"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////group分组管理////////////////////////////////////// -->
+    <!-- 创建分组 -->
+    <location id="createGroup">
+        <url>https://api.weixin.qq.com/cgi-bin/groups/create?access_token={accessToken}</url>
+        <postdata>
+            {"group":{"name":"{groupName}"}}
+        </postdata>
+    </location>
+    <!-- 查询分组信息 -->
+    <location id="searchGroupInfos">
+        <url>https://api.weixin.qq.com/cgi-bin/groups/get?access_token={accessToken}</url>
+    </location>
+    <!-- 查询用户所在分组 -->
+    <location id="findOwnerGroupId">
+        <url>https://api.weixin.qq.com/cgi-bin/groups/getid?access_token={accessToken}</url>
+        <postdata>
+            {"openid":"{openId}"}
+        </postdata>
+    </location>
+    <!-- 修改分组名称 -->
+    <location id="modifyGroupName">
+        <url>https://api.weixin.qq.com/cgi-bin/groups/update?access_token={accessToken}</url>
+        <postdata>
+            {"group":{"id":{groupId},"name":"{groupName}"}}
+        </postdata>
+    </location>
+    <!-- 移动用户分组 -->
+    <location id="userChangeGroup">
+        <url>https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token={accessToken}</url>
+        <postdata>
+            {"openid":"{openId}","to_groupid":{groupId}}
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////模板消息////////////////////////////////////// -->
+    <!-- 发送模板消息 -->
+    <location id="templateMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "template_id":"{templateId}",
+            "url":"{url}",
+            "topcolor":"{topColor}",
+            "data":{data}
+            }
+        </postdata>
+    </location>
+    <!-- 发送模板消息 -->
+    <location id="templateMessageNoUrl">
+        <url>https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "template_id":"{templateId}",
+            "topcolor":"{topColor}",
+            "data":{data}
+            }
+        </postdata>
+    </location>
+    <!-- 获取模板id -->
+    <location id="api_add_template">
+        <url>https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token={accessToken}</url>
+        <postdata>
+            {
+            "template_id_short":"{templateCode}"
+            }
+        </postdata>
+    </location>
+    <!-- 设置行业id -->
+    <location id="api_set_industry">
+        <url>https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token={accessToken}</url>
+        <postdata>
+            {
+            "industry_id1":"{masterIndustryId}",
+            "industry_id2":"{subIndustryId}"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////push消息////////////////////////////////////// -->
+    <!--push:发送文本消息 -->
+    <location id="sendTextMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"text",
+            "text":
+            {
+            "content":"{content}"
+            }
+            }
+        </postdata>
+    </location>
+    <!--push:发送图片消息 -->
+    <location id="sendImageMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"image",
+            "image":
+            {
+            "media_id":"{mediaId}"
+            }
+            }
+        </postdata>
+    </location>
+    <!--push:发送语音消息 -->
+    <location id="sendVoiceMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"voice",
+            "voice":
+            {
+            "media_id":"{mediaId}"
+            }
+            }
+        </postdata>
+    </location>
+    <!--push:发送视频消息 -->
+    <location id="sendVideoMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"video",
+            "video":
+            {
+            "media_id":"{mediaId}",
+            "title":"{title}",
+            "description":"{description}"
+            }
+            }
+        </postdata>
+    </location>
+    <!--push:发送音乐消息 -->
+    <location id="sendMusicMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"music",
+            "music":{music}
+            }
+        </postdata>
+    </location>
+    <!--push:发送图文消息 -->
+    <location id="sendArticlesMessage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "msgtype":"news",
+            "news":{
+            "articles":{articles}
+            }
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////批量发送////////////////////////////////////// -->
+    <!-- 上传图文消息 -->
+    <location id="uploadNews">
+        <url>https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token={accessToken}</url>
+        <postdata>
+            {
+            "articles":{articles}
+            }
+        </postdata>
+    </location>
+    <!-- 发送图文消息 -->
+    <location id="batchSendNews">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={accessToken}</url>
+        <postdata>
+            {
+            "filter": {
+            "is_to_all":{isToAll},
+            "group_id": "{groupId}"
+            },
+            "mpnews": {
+            "media_id": "{newsId}"
+            },
+            "msgtype": "mpnews"
+            }
+        </postdata>
+    </location>
+    <!-- 群发图文消息 -->
+    <location id="sendNewsToUsers">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":{users},
+            "mpnews":{
+            "media_id":"{newsId}"
+            },
+            "msgtype":"mpnews"
+            }
+        </postdata>
+    </location>
+    <!-- 发送文本消息 -->
+    <location id="batchSendText">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={accessToken}</url>
+        <postdata>
+            {
+            "filter":{
+            "is_to_all":{isToAll},
+            "group_id":"{groupId}"
+            },
+            "text":{
+            "content":"{content}"
+            },
+            "msgtype":"text"
+            }
+        </postdata>
+    </location>
+    <!-- 群发文本消息 -->
+    <location id="sendTextToUsers">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser": {users},
+            "msgtype": "text",
+            "text": {
+            "content": "{content}"
+            }
+            }
+        </postdata>
+    </location>
+    <!-- 发送语音消息 -->
+    <location id="batchSendVoice">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={accessToken}</url>
+        <postdata>
+            {
+            "filter":{
+            "is_to_all":{isToAll},
+            "group_id":"{groupId}"
+            },
+            "voice":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"voice"
+            }
+        </postdata>
+    </location>
+    <!-- 群发语音消息 -->
+    <location id="sendVoiceToUsers">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":{users},
+            "voice":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"voice"
+            }
+        </postdata>
+    </location>
+    <!-- 发送图片消息 -->
+    <location id="batchSendImage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={accessToken}</url>
+        <postdata>
+            {
+            "filter":{
+            "is_to_all":{isToAll},
+            "group_id":"{groupId}"
+            },
+            "image":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"image"
+            }
+        </postdata>
+    </location>
+    <!-- 群发图片消息 -->
+    <location id="sendImageToUsers">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":{users},
+            "image":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"image"
+            }
+        </postdata>
+    </location>
+    <!-- 发送视频消息之二 大结局 -->
+    <location id="batchSendVideo">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={accessToken}</url>
+        <postdata>
+            {
+            "filter":{
+            "is_to_all":{isToAll},
+            "group_id":"{groupId}"
+            },
+            "mpvideo":{
+            "media_id":"{videoId}"
+            },
+            "msgtype":"mpvideo"
+            }
+        </postdata>
+    </location>
+    <!-- 群发视频消息 -->
+    <location id="sendVideoToUsers">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":{users},
+            "mpvideo":{
+            "media_id":"{videoId}",
+            "title":"{title}",
+            "description":"{description}"
+            },
+            "msgtype":"mpvideo"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////删除////////////////////////////////////// -->
+    <!-- 删除msg -->
+    <location id="deleteMessage">
+        <url>https://api.weixin.qq.com//cgi-bin/message/mass/delete?access_token={accessToken}</url>
+        <postdata>
+            {
+            "msgid":{msgId}
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////预览接口////////////////////////////////////// -->
+    <location id="previewNews">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "mpnews":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"mpnews"
+            }
+        </postdata>
+    </location>
+    <location id="previewText">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "text":{
+            "content":"{content}"
+            },
+            "msgtype":"text"
+            }
+        </postdata>
+    </location>
+    <location id="previewVoice">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "voice":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"voice"
+            }
+        </postdata>
+    </location>
+    <location id="previewImage">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "image":{
+            "media_id":"{mediaId}"
+            },
+            "msgtype":"image"
+            }
+        </postdata>
+    </location>
+    <location id="previewVideo">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={accessToken}</url>
+        <postdata>
+            {
+            "touser":"{openId}",
+            "mpvideo":{"media_id":"{videoId}"},
+            "msgtype":"mpvideo"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////查询群发状态////////////////////////////////////// -->
+    <location id="getMsgStatus">
+        <url>https://api.weixin.qq.com/cgi-bin/message/mass/get?access_token={accessToken}</url>
+        <postdata>
+            {
+            "msg_id": "{msgId}"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////客服接口////////////////////////////////////// -->
+    <!-- 获取客服基本信息 -->
+    <location id="getKfList">
+        <url>https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token={accessToken}</url>
+    </location>
+    <!-- 获取在线客服信息 -->
+    <location id="getOnlineKfList">
+        <url>https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist?access_token={accessToken}</url>
+    </location>
+    <!--获取客服聊天记录 -->
+    <location id="getKfRecord">
+        <url>https://api.weixin.qq.com/cgi-bin/customservice/getrecord?access_token={accessToken}</url>
+        <postdata>
+            {
+            "starttime" : {start},
+            "endtime" : {end},
+            "openid" : "{openId}",
+            "pageindex" : {page},
+            "pagesize" : {pageSize}
+            }
+        </postdata>
+    </location>
+    <!--获取客服聊天记录 -->
+    <location id="getAllKfRecord">
+        <url>https://api.weixin.qq.com/cgi-bin/customservice/getrecord?access_token={accessToken}</url>
+        <postdata>
+            {
+            "starttime" : {start},
+            "endtime" : {end},
+            "pageindex" : {page},
+            "pagesize" : {pageSize}
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////菜单////////////////////////////////////// -->
+    <!-- 创建菜单 -->
+    <location id="createMenu">
+        <url>https://api.weixin.qq.com/cgi-bin/menu/create?access_token={accessToken}</url>
+        <postdata>
+            {
+            "button":{menus}
+            }
+        </postdata>
+    </location>
+    <!-- 获取所有菜单 -->
+    <location id="getMenus">
+        <url>https://api.weixin.qq.com/cgi-bin/menu/get?access_token={accessToken}</url>
+    </location>
+    <!-- 删除所有菜单 -->
+    <location id="deleteMenus">
+        <url>https://api.weixin.qq.com/cgi-bin/menu/delete?access_token={accessToken}</url>
+    </location>
+    <!-- ////////////////////////////////////上传文件////////////////////////////////////// -->
+    <!-- 上传文件 -->
+    <location id="uploadMedia">
+        <url>http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token={accessToken}&amp;type={type}</url>
+    </location>
+    <!-- 发送视频消息之一 转换media -->
+    <location id="convertVideoId">
+        <url>https://file.api.weixin.qq.com/cgi-bin/media/uploadvideo?access_token={accessToken}</url>
+        <postdata>
+            {
+            "media_id": "{mediaId}",
+            "title": "{title}",
+            "description": "{description}"
+            }
+        </postdata>
+    </location>
+    <!-- ////////////////////////////////////二维码////////////////////////////////////// -->
+    <!-- 创建临时二维码 -->
+    <location id="createExpireQrcodeTicket">
+        <url>https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={accessToken}</url>
+        <postdata>
+            {"expire_seconds": {expire}, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": {sceneId}}}}
+        </postdata>
+    </location>
+    <!-- 创建永久二维码 -->
+    <location id="createQrcodeTicket">
+        <url>https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={accessToken}</url>
+        <postdata>
+            {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": {sceneId}}}}
+        </postdata>
+    </location>
+    <!-- //////////////////////////////////// 卡 券 ////////////////////////////////////// -->
+    <!-- 更改卡券信息 -->
+    <location id="updateCardDetail">
+        <url>https://api.weixin.qq.com/card/update?access_token={accessToken}</url>
+        <postdata>
+            {cardJson}
+        </postdata>
+    </location>
+    <!-- 设置白名单 -->
+    <location id="setWhiteList">
+        <url>https://api.weixin.qq.com/card/testwhitelist/set?access_token={accessToken}</url>
+        <postdata>
+            {
+            "openid": {openIds},
+            "username": {userNames}
+            }
+        </postdata>
+    </location>
+    <!-- 创建卡卷接口-->
+    <location id="createCard">
+        <url>https://api.weixin.qq.com/card/create?access_token={accessToken}</url>
+        <postdata>
+            {"card":{cardJson}}
+        </postdata>
+    </location>
+    <!-- 获取卡券背景颜色-->
+    <location id="getCardColors">
+        <url>https://api.weixin.qq.com/card/getcolors?access_token={accessToken}</url>
+    </location>
+    <!--上传Logo -->
+    <location id="uploadCardImg">
+        <url>https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={accessToken}</url>
+    </location>
+    <!-- 获取卡卷的二维码 ticket -->
+    <location id="getCardTicket">
+        <url>https://api.weixin.qq.com/card/qrcode/create?access_token={accessToken}</url>
+        <postdata>
+            {
+                "action_name": "QR_CARD",
+                "action_info": {
+                "card": {
+                        {cardJson}
+                    }
+                }
+            }
+        </postdata>
+    </location>
+    <!-- 查询卡券详情 -->
+    <location id="getCardDetail">
+        <url>https://api.weixin.qq.com/card/get?access_token={accessToken}</url>
+        <postdata>
+            {
+            "card_id":"{cardId}"
+            }
+        </postdata>
+    </location>
+    <!-- 解码 加密的code -->
+    <location id="decryptCode">
+        <url>https://api.weixin.qq.com/card/code/decrypt?access_token={accessToken}</url>
+        <postdata>
+            {
+            "encrypt_code":
+            "{encryptCode}"
+            }
+        </postdata>
+    </location>
+    <!-- 查询code -->
+    <location id="getCode">
+        <url>https://api.weixin.qq.com/card/code/get?access_token={accessToken}</url>
+        <postdata>
+            {
+                "code":"{code}",
+                "card_id":"{cardId}"
+            }
+        </postdata>
+    </location>
+    <!-- 获取卡券的 ticket -->
+    <location id="wx_card_ticket">
+        <url>https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={accessToken}&amp;type=wx_card</url>
+    </location>
+    <!-- 核销卡卷接口 -->
+    <location id="consumeCard">
+        <url>https://api.weixin.qq.com/card/code/consume?access_token={accessToken}</url>
+        <postdata>
+            {
+                {json}
+            }
+        </postdata>
+    </location>
+    <!-- 获取用户已领取卡券接口-->
+    <location id="getUserCardList">
+        <url>https://api.weixin.qq.com/card/user/getcardlist?access_token={accessToken}</url>
+        <postdata>
+            {
+                {json}
+            }
+        </postdata>
+    </location>
+    <!-- 批量查询卡列表 -->
+    <location id="batchGetCard">
+        <url>https://api.weixin.qq.com/card/batchget?access_token={accessToken}</url>
+        <postdata>
+            {
+                "offset":{offset},
+                "count":{count},
+                "status_list":[{statusList}]
+            }
+        </postdata>
+    </location>
+    <!-- 修改库存接口   -->
+    <location id="modifyStock">
+        <url>https://api.weixin.qq.com/card/modifystock?access_token={accessToken}</url>
+        <postdata>
+            {
+                {json}
+            }
+        </postdata>
+    </location>
+    <!-- 删除卡券接口-->
+    <location id="deleteCard">
+        <url>https://api.weixin.qq.com/card/delete?access_token={accessToken}</url>
+        <postdata>
+            {
+                "card_id":"{cardId}"
+            }
+        </postdata>
+    </location>
+    <!-- 设置卡券失效接口 -->
+    <location id="unavailableCard">
+        <url>https://api.weixin.qq.com/card/code/unavailable?access_token={accessToken}</url>
+        <postdata>
+            {
+                {json}
+            }
+        </postdata>
+    </location>
+    <!-- //////////////////////////////////// JSAPI ////////////////////////////////////// -->
+    <!-- 获取jsapi_ticket -->
+    <location id="getJsapiTicket">
+        <url>https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={accessToken}&amp;type=jsapi</url>
+    </location>
+    <!-- //////////////////////////////////// 红 包 ////////////////////////////////////// -->
+    <!-- 红包接口 -->
+    <location id="redEnvelope">
+        <url>https://wxapp.tenpay.com/app/v1.0/wxhb_payreq_sp.cgi</url>
+    </location>
+    <!-- ////////////////////////////////////oauth2授权////////////////////////////////////// -->
+    <!-- web方式获取用户基本信息 -->
+    <location id="snsWebUserInfo">
+        <url>https://api.weixin.qq.com/sns/userinfo?access_token={webAccessToken}&amp;openid={openId}&amp;lang=zh_CN</url>
+    </location>
+    <!-- oauth2刷新网页token -->
+    <location id="oauth2RefreshWebToken">
+        <url>https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={appId}&amp;grant_type=refresh_token&amp;refresh_token={refreshToken}</url>
+    </location>
+    <!-- oauth2获取网页token -->
+    <location id="oauth2WebToken">
+        <url>https://api.weixin.qq.com/sns/oauth2/access_token?appid={appId}&amp;secret={secret}&amp;code={code}&amp;grant_type=authorization_code</url>
+    </location>
+    <!-- oauth2认证地址 -->
+    <location id="oauth2Authorize">
+        <url>https://open.weixin.qq.com/connect/oauth2/authorize?appid={appId}&amp;redirect_uri={url}&amp;response_type=code&amp;scope={scope}&amp;state={state}#wechat_redirect</url>
+    </location>
+
+
+    <!--获取网页授权的code-->
+    <location id="oauth2AuthorizeTh">
+        <url>https://open.weixin.qq.com/connect/oauth2/authorize?appid={appId}&amp;redirect_uri={redirectUri}&amp;response_type=code&amp;scope={scope}&amp;state={state}&amp;component_appid={componentAppId}#wechat_redirect</url>
+    </location>
+
+    <!--获取网页授权的access_token-->
+    <location id="oauth2WebTokenTh">
+        <url>https://api.weixin.qq.com/sns/oauth2/component/access_token?component_access_token={componentAccessToken}&amp;appid={appId}&amp;code={code}&amp;grant_type=authorization_code&amp;component_appid={componentAppId}</url>
+    </location>
+
+    <!--刷新网页授权的access_token-->
+    <location id="oauth2RefreshWebTokenTh">
+        <url>https://api.weixin.qq.com/sns/oauth2/component/refresh_token?component_access_token={componentAccessToken}&amp;refresh_token={refreshToken}&amp;code={code}&amp;grant_type=refresh_token&amp;component_appid={componentAppId}</url>
+    </location>
+
+    <!--获取用户信息-->
+    <location id="oauth2GetUserInfoTh">
+        <url>https://api.weixin.qq.com/sns/userinfo?access_token={accessToken}&amp;openid={openId}&amp;lang=zh_CN</url>
+    </location>
+
+    <!-- ////////////////////////////////////微信支付////////////////////////////////////// -->
+    <!-- 统一支付 -->
+    <location id="unifiedorder">
+        <url>https://api.mch.weixin.qq.com/pay/unifiedorder</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 小额支付 -->
+    <location id="micropay">
+        <url>https://api.mch.weixin.qq.com/pay/micropay</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 订单查询 -->
+    <location id="orderquery">
+        <url>https://api.mch.weixin.qq.com/pay/orderquery</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 退款 -->
+    <location id="refund">
+        <url>https://api.mch.weixin.qq.com/secapi/pay/refund</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 撤销 -->
+    <location id="reverse">
+        <url>https://api.mch.weixin.qq.com/secapi/pay/reverse</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 退款查询 -->
+    <location id="refundquery">
+        <url>https://api.mch.weixin.qq.com/pay/refundquery</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 下载对账单 -->
+    <location id="downloadbill">
+        <url>https://api.mch.weixin.qq.com/pay/downloadbill</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 短连接转换 -->
+    <location id="shorturl">
+        <url>https://api.mch.weixin.qq.com/tools/shorturl</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <!-- 关闭订单 -->
+    <location id="closeorder">
+        <url>https://api.mch.weixin.qq.com/pay/closeorder</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+    <location id="qiye_transfers">
+        <url>https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+
+    <location id="sendredpack">
+          <url>https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack</url>
+        <postdata>
+            {xml}
+        </postdata>
+    </location>
+
+    <!-- ////////////////////////////////////素材管理////////////////////////////////////// -->
+
+    <!--获取素材总数-->
+    <location id="getMaterialCount">
+        <url>https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token={accessToken}</url>
+    </location>
+    <!--获取素材列表-->
+    <location id="batchGetMaterial">
+        <url>https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token={accessToken}</url>
+        <postdata>
+            {
+                "type": "{type}",
+                "offset":{offset},
+                "count":{count}
+            }
+        </postdata>
+    </location>
+
+    <!--新增永久素材 图文类型-->
+    <location id="addNews">
+        <url>https://api.weixin.qq.com/cgi-bin/material/add_news?access_token={accessToken}</url>
+        <postdata>
+            {
+            "articles": {json}
+            }
+        </postdata>
+    </location>
+    <!--新增永久素材 其他类型 -->
+    <location id="addMaterial">
+        <url>https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={accessToken}&amp;type={type}</url>
+    </location>
+
+    <!--获取永久-->
+    <location id="getMaterial">
+        <url>https://api.weixin.qq.com/cgi-bin/material/get_material?access_token={accessToken}</url>
+        <postdata>
+            {
+                "media_id": "{mediaId}"
+            }
+        </postdata>
+    </location>
+
+    <!--删除永久素材-->
+    <location id="delMaterial">
+        <url>https://api.weixin.qq.com/cgi-bin/material/del_material?access_token={accessToken}</url>
+        <postdata>
+            {
+                "media_id": "{mediaId}"
+            }
+        </postdata>
+    </location>
+
+    <!--删除永久素材-->
+    <location id="updateNews">
+        <url>https://api.weixin.qq.com/cgi-bin/material/update_news?access_token={accessToken}</url>
+        <postdata>
+            {
+                "media_id": "{mediaId}",
+                "index" : "{index}",
+                "articles": {articles}
+            }
+        </postdata>
+    </location>
+
+    <!-- ////////////////////////////////////摇一摇周边////////////////////////////////////// -->
+
+    <!-- 申请设备ID -->
+    <location id="applyIdDevice">
+        <url>https://api.weixin.qq.com/shakearound/device/applyid?access_token={accessToken}</url>
+        <postdata>
+            {
+            "quantity":{quantity},
+            "apply_reason":"{applyReason}",
+            "comment":"{comment}",
+            "poi_id":{poiId}
+            }
+        </postdata>
+    </location>
+    <!-- 修改设备备注信息 -->
+    <location id="updateDevice">
+        <url>https://api.weixin.qq.com/shakearound/device/update?access_token={accessToken}</url>
+        <postdata>
+            {
+            "device_identifier":{
+            "device_id":{deviceId}
+            },
+            "comment": "{comment}"
+            }
+        </postdata>
+    </location>
+
+    <!-- 配置设备与门店的关联关系 -->
+    <location id="bindlocation">
+        <url>https://api.weixin.qq.com/shakearound/device/bindlocation?access_token={accessToken}</url>
+        <postdata>
+            {
+            "device_identifier":{
+            "device_id":{deviceId}
+            },
+            "poi_id": {poiId},
+            }
+        </postdata>
+    </location>
+    <!-- 查询单个设备信息 -->
+    <location id="getDeviceInfo">
+        <url>https://api.weixin.qq.com/shakearound/device/search?access_token={accessToken}</url>
+        <postdata>
+            {
+            "device_identifiers":[
+            {
+            "device_id":{deviceId}
+            }
+            ]
+            }
+        </postdata>
+    </location>
+    <!-- 查询设备列表 -->
+    <location id="getDeviceInfoList">
+        <url>https://api.weixin.qq.com/shakearound/device/search?access_token={accessToken}</url>
+        <postdata>
+            {
+            "begin": {begin},
+            "count": {count}
+            }
+        </postdata>
+    </location>
+    <!-- 新增页面 -->
+    <location id="addPage">
+        <url>https://api.weixin.qq.com/shakearound/page/add?access_token={accessToken}</url>
+        <postdata>
+            {
+            "title":"{title}",
+            "description":"{description}",
+            "page_url":"{pageUrl}",
+            "comment":"{comment}",
+            "icon_url":"{iconUrl}"
+            }
+        </postdata>
+    </location>
+    <!-- 更新页面 -->
+    <location id="updatePage">
+        <url>https://api.weixin.qq.com/shakearound/page/update?access_token={accessToken}</url>
+        <postdata>
+            {
+            "page_id":{pageId}
+            "title":"{title}",
+            "description":"{description}",
+            "page_url":"{pageUrl}",
+            "comment":"{comment}",
+            "icon_url":"{iconUrl}"
+            }
+        </postdata>
+    </location>
+    <!-- 查询页面1 -->
+    <location id="searchPage1">
+        <url>https://api.weixin.qq.com/shakearound/page/search?access_token={accessToken}</url>
+        <postdata>
+            {
+            "page_ids":{pageIds}
+            }
+        </postdata>
+    </location>
+    <!-- 查询页面2 -->
+    <location id="searchPage2">
+        <url>https://api.weixin.qq.com/shakearound/page/search?access_token={accessToken}</url>
+        <postdata>
+            {
+            "begin": {begin},
+            "count": {count}
+            }
+        </postdata>
+    </location>
+    <!-- 删除页面 -->
+    <location id="deletePage">
+        <url>https://api.weixin.qq.com/shakearound/page/delete?access_token={accessToken}</url>
+        <postdata>
+            {
+            "page_ids":{pageIds}
+            }
+        </postdata>
+    </location>
+    <!-- 上传图片素材 -->
+    <location id="addMaterial">
+        <url>https://api.weixin.qq.com/shakearound/material/add?access_token={accessToken}</url>
+    </location>
+
+    <!--门店接口开始-->
+
+    <!--上传门店图片-->
+    <location id="uploadPoiImg">
+        <url>https://file.api.weixin.qq.com/cgi-bin/media/uploadimg?access_token={accessToken}</url>
+    </location>
+
+    <!--创建门店-->
+    <location id="addpoi">
+        <url>http://api.weixin.qq.com/cgi-bin/poi/addpoi?access_token={accessToken}</url>
+        <postdata>
+            {
+                "business":{
+                    "base_info":{json}
+                }
+            }
+        </postdata>
+    </location>
+
+    <!--查询门店信息-->
+    <location id="getpoi">
+        <url>http://api.weixin.qq.com/cgi-bin/poi/getpoi?access_token={accessToken}</url>
+        <postdata>
+            {
+                "poi_id":"{poiId}"
+            }
+        </postdata>
+    </location>
+
+    <!--查询门店列表-->
+    <location id="getpoilist">
+        <url>http://api.weixin.qq.com/cgi-bin/poi /getpoilist?access_token={accessToken}</url>
+        <postdata>
+            {
+                "begin":{begin},
+                "limit":{limit}
+            }
+        </postdata>
+    </location>
+
+    <!--删除门店-->
+    <location id="delpoi">
+        <url>http://api.weixin.qq.com/cgi-bin/poi/delpoi?access_token={accessToken}</url>
+        <postdata>
+            {
+                "poi_id":{poiId}
+            }
+        </postdata>
+    </location>
+
+    <!--修改门店-->
+    <location id="updatepoi">
+        <url>http://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token={accessToken}</url>
+        <postdata>
+            {
+                "business":{
+                    "base_info":{json}
+                }
+            }
+        </postdata>
+    </location>
+
+    <!--门店接口结束-->
+
+
+    <!--会员卡接口开始-->
+
+    <!-- 激活、绑定会员卡 -->
+    <location id="activateCard">
+        <url>https://api.weixin.qq.com/card/membercard/activate?access_token={accessToken}</url>
+        <postdata>
+            {json}
+        </postdata>
+    </location>
+    <!-- 会员卡交易 -->
+    <location id="updateuserCard">
+        <url>https://api.weixin.qq.com/card/membercard/updateuser?access_token={accessToken}</url>
+        <postdata>
+            {json}
+        </postdata>
+    </location>
+
+    <!-- 发送会员卡公告 -->
+    <location id="sendCardBulletin">
+        <url>https://api.weixin.qq.com/card/announcement/send?access_token={accessToken}</url>
+        <postdata>
+            {json}
+        </postdata>
+    </location>
+    <!-- 更新会员卡公告 -->
+    <location id="updateCardBulletin">
+        <url>https://api.weixin.qq.com/card/announcement/update?access_token={accessToken}</url>
+        <postdata>
+            {json}
+        </postdata>
+    </location>
+    <!--会员卡接口结束-->
+
+    <!-- 更新会员卡Code  -->
+    <location id="updateCardCode">
+        <url>https://api.weixin.qq.com/card/code/update?access_token={accessToken}</url>
+        <postdata>
+            {
+            "code": "{code}",
+            "card_id": "{cardId}",
+            "new_code": "{newCode}"
+            }
+        </postdata>
+    </location>
+    <!--会员卡接口结束-->
+</root>
